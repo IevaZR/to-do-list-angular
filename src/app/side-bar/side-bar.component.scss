@@ -1,0 +1,35 @@
+$lightFontColor: #f3eef0;
+
+h1 {
+  color: $lightFontColor;
+  font-family: "Inika", serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.sideBarProjectsWrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  padding: 20px 0 50px 37px;
+
+  a {
+    color: $lightFontColor;
+    font-family: "Inria Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  font-family: "Inria Sans", sans-serif;
+  font-style: italic;
+  color: $lightFontColor;
+  font-weight: 400;
+  font-size: 18px;
+  cursor: pointer;
+}

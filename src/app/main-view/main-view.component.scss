@@ -1,0 +1,16 @@
+app-main-task-view {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f3eef0;
+  padding: 70px;
+  box-sizing: border-box;
+}
+
+app-side-bar {
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 300px;
+  background-color: #9080a4;
+  min-height: 100%;
+  padding: 90px 30px 90px 50px;
+}
