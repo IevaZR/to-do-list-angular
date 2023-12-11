@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Task } from '../main-view/taskList';
 
 @Component({
   selector: 'app-completed-task-item',
@@ -11,5 +12,7 @@ export class CompletedTaskItemComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @Input() task!: Task
 
 }

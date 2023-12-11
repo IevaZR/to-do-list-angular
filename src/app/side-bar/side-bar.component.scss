@@ -1,5 +1,9 @@
 $lightFontColor: #f3eef0;
 
+::host {
+    color: red
+}
+
 h1 {
   color: $lightFontColor;
   font-family: "Inika", serif;
@@ -20,6 +24,9 @@ h1 {
     font-size: 18px;
     font-weight: 400;
     cursor: pointer;
+    &:hover {
+        font-weight: 900;
+    }
   }
 }
 
@@ -32,4 +39,7 @@ button {
   font-weight: 400;
   font-size: 18px;
   cursor: pointer;
+  &:hover {
+    font-weight: 900;
+  }
 }

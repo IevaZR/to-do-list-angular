@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TaskList } from '../main-view/taskList';
 
 @Component({
   selector: 'app-side-bar',
@@ -10,6 +11,9 @@ export class SideBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
+  @Input() projects!: TaskList[] 
+  
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Task } from '../main-view/taskList';
 
 @Component({
   selector: 'app-active-task-item',
@@ -10,6 +11,9 @@ export class ActiveTaskItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
+
+  @Input() activeTaskItem!: Task
 }

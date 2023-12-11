@@ -36,5 +36,8 @@
     border: none;
     cursor: pointer;
     text-wrap: nowrap;
+    &:hover {
+      background-color: #c93d6b;
+    }
   }
 }

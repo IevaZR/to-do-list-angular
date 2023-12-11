@@ -1,5 +1,5 @@
-<h1 class="mainTaskViewHeading">Shopping list</h1>
+<h1 class="mainTaskViewHeading">{{project.projectName}}</h1>
 <app-add-new-task></app-add-new-task>
-<app-active-task-list></app-active-task-list>
+<app-active-task-list [tasks] = 'activeTasks()' ></app-active-task-list>
 <button class="mainTaskViewShowCompletedBtn">Hide completed tasks</button>
-<app-completed-task-list></app-completed-task-list>
+<app-completed-task-list [tasks] = 'completedTasks()'></app-completed-task-list>

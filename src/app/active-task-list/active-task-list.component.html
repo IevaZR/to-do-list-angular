@@ -1,8 +1,6 @@
 <div class="activeTaskListWrapper">
-  <app-active-task-item></app-active-task-item>
-  <app-active-task-item></app-active-task-item>
-  <app-active-task-item></app-active-task-item>
-  <app-active-task-item></app-active-task-item>
-  <app-active-task-item></app-active-task-item>
-  <app-active-task-item></app-active-task-item>
+  <app-active-task-item
+    *ngFor="let item of tasks"
+    [activeTaskItem] = 'item'
+  ></app-active-task-item>
 </div>

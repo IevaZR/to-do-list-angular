@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TaskList } from '../main-view/taskList';
 
 @Component({
   selector: 'app-main-task-view',
@@ -10,6 +11,17 @@ export class MainTaskViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.activeTasks())
+  }
+
+  @Input() project!: TaskList
+
+  activeTasks = () => {
+    return this.project.tasks.filter((item) => item.completed === false)
+  }
+
+  completedTasks = () => {
+    return this.project.tasks.filter((item) => item.completed === true)
   }
 
 }
