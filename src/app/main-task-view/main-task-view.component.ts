@@ -11,7 +11,6 @@ export class MainTaskViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.activeTasks())
   }
 
   @Input() project!: TaskList
