@@ -1,2 +1,5 @@
-<app-side-bar [projects] = 'taskList'></app-side-bar>
-<app-main-task-view *ngFor="let item of taskList" [project] = 'item'></app-main-task-view>
+<app-side-bar
+  [projects]="taskList"
+  (showProjectEvent)="showProject($event)"
+></app-side-bar>
+<app-main-task-view [project]="projectToShow"></app-main-task-view>

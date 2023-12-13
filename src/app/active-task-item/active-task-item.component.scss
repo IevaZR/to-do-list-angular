@@ -7,9 +7,6 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.20);
-  &:focus-within {
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
 
   input {
     margin-left: 10px;
@@ -46,4 +43,8 @@
       }
     }
   }
+}
+
+.importantTask {
+  background-color: rgba(247, 225, 232, 0.831);
 }

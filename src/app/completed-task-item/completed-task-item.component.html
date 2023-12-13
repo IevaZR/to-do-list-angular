@@ -1,9 +1,7 @@
 <div class="completedTaskItemWrapper">
-  <input type="checkbox" />
+  <input type="checkbox" [checked]="task.completed" (click)="completeTask()"/>
   <p>{{task.taskName}}</p>
   <div class="completedTaskItemButtonsWrapper">
-    <button type="button"><img src="../../assets/flag.png"></button>
-    <button type="button"><img src="../../assets/edit.png"></button>
-    <button type="button"><img src="../../assets/delete.png"></button>
+    <button type="button" (click)="deleteTaskItem()"><img src="../../assets/delete.png" ></button>
   </div>
 </div>

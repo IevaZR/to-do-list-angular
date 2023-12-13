@@ -1,9 +1,26 @@
-<div class="activeTaskItemWrapper">
-  <input type="checkbox" (click)="completeTask()"/>
-  <p>{{activeTaskItem.taskName}}</p>
+<div
+  class="activeTaskItemWrapper"
+  [ngClass]="{ importantTask: activeTaskItem.important }"
+>
+  <input
+    type="checkbox"
+    (click)="completeTask()"
+    [checked]="activeTaskItem.completed"
+  />
+  <p>{{ activeTaskItem.taskName }}</p>
   <div class="activeTaskItemButtonsWrapper">
-    <button type="button"><img src="../../assets/flag.png"></button>
-    <button type="button"><img src="../../assets/edit.png"></button>
-    <button type="button"><img src="../../assets/delete.png"></button>
+    <button type="button" (click)="markAsImportant()">
+      <img
+        [src]="
+          !activeTaskItem.important
+            ? '../../assets/flag.png'
+            : '../../assets/red-flag.png'
+        "
+      />
+    </button>
+    <button type="button"><img src="../../assets/edit.png" /></button>
+    <button type="button" (click)="deleteTask()">
+      <img src="../../assets/delete.png" />
+    </button>
   </div>
 </div>

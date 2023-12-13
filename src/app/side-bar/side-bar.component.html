@@ -1,7 +1,7 @@
 <div class="sideBarWrapper">
   <h1>Projects</h1>
   <div class="sideBarProjectsWrapper">
-    <a *ngFor="let item of projects; let i">{{ item.projectName }}</a>
+    <a *ngFor="let item of projects" (click)="showProject(item.projectName)">{{ item.projectName }}</a>
     <!-- <a>Work</a>
     <a>Home</a>
     <a>Gardening</a>
