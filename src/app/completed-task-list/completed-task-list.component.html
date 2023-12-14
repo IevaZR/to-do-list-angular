@@ -1,4 +1,7 @@
 <h2>Completed tasks</h2>
 <div class="completedTaskListWrapper">
-  <app-completed-task-item *ngFor="let item of tasks" [task] = 'item'></app-completed-task-item>
+  <app-completed-task-item
+    *ngFor="let item of tasks"
+    [task]="item"
+  ></app-completed-task-item>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { TaskList } from '../main-view/taskList';
 
 @Component({
@@ -7,7 +7,7 @@ import { TaskList } from '../main-view/taskList';
   styleUrls: ['./main-task-view.component.scss'],
 })
 export class MainTaskViewComponent implements OnInit {
-  constructor() {}
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit() {}
 
@@ -29,5 +29,7 @@ export class MainTaskViewComponent implements OnInit {
     this.showCompletedTasksBtn = this.completedTasksVisible
       ? 'Hide completed tasks'
       : 'Show completed tasks';
+    console.log(this.completedTasks());
+    console.log(this.activeTasks());
   }
 }

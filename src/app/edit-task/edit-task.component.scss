@@ -1,0 +1,48 @@
+input {
+  all: unset;
+  margin-left: 10px;
+  width: 100%;
+  height: 25px;
+  cursor: pointer;
+  accent-color: rgba(220, 95, 137, 0.831);
+  border: none;
+  color: #ec9171;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 15px;
+  font-style: italic;
+}
+
+p {
+  width: 100%;
+  padding: 5px 5px 5px 20px;
+  margin: 0;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+.activeTaskItemButtonsWrapper {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  button {
+    width: 80px;
+    height: 30px;
+    background-color: #e85f8db1;
+    color: #f3eef0;
+    font-family: "Inria Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-wrap: nowrap;
+    &:hover {
+      background-color: #c93d6b;
+    }
+  }
+}
+
+.importantTask {
+  background-color: rgba(247, 225, 232, 0.831);
+}

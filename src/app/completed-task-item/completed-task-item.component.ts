@@ -11,7 +11,9 @@ export class CompletedTaskItemComponent implements OnInit {
   constructor(private taskManagementService: TaskManagementService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.task)
+  }
 
   @Input() task!: Task;
 

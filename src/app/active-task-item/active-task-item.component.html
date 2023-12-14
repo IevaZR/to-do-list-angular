@@ -1,26 +1,42 @@
-<div
-  class="activeTaskItemWrapper"
-  [ngClass]="{ importantTask: activeTaskItem.important }"
->
-  <input
-    type="checkbox"
-    (click)="completeTask()"
-    [checked]="activeTaskItem.completed"
-  />
-  <p>{{ activeTaskItem.taskName }}</p>
-  <div class="activeTaskItemButtonsWrapper">
-    <button type="button" (click)="markAsImportant()">
-      <img
-        [src]="
-          !activeTaskItem.important
-            ? '../../assets/flag.png'
-            : '../../assets/red-flag.png'
-        "
-      />
-    </button>
-    <button type="button"><img src="../../assets/edit.png" /></button>
-    <button type="button" (click)="deleteTask()">
-      <img src="../../assets/delete.png" />
-    </button>
-  </div>
-</div>
+<ng-container
+  *ngIf="editingTask; then editingTaskTemplate; else activeTaskTemplate"
+></ng-container>
+
+<ng-template #editingTaskTemplate>
+  <app-edit-task
+    [taskItem]="activeTaskItem"
+    class="editingTaskItemWrapper"
+    [ngClass]="{ importantTask: activeTaskItem.important }"
+    (setEditingInactive)="editingTask = false"
+  ></app-edit-task>
+</ng-template>
+
+<ng-template #activeTaskTemplate
+  ><div
+    class="activeTaskItemWrapper"
+    [ngClass]="{ importantTask: activeTaskItem.important }"
+  >
+    <input
+      type="checkbox"
+      (click)="completeTask()"
+      [checked]="activeTaskItem.completed"
+    />
+    <p>{{ activeTaskItem.taskName }}</p>
+    <div class="activeTaskItemButtonsWrapper">
+      <button type="button" (click)="markAsImportant()">
+        <img
+          [src]="
+            !activeTaskItem.important
+              ? '../../assets/flag.png'
+              : '../../assets/red-flag.png'
+          "
+        />
+      </button>
+      <button type="button" (click)="editingTask = true">
+        <img src="../../assets/edit.png" />
+      </button>
+      <button type="button" (click)="deleteTask()">
+        <img src="../../assets/delete.png" />
+      </button>
+    </div></div
+></ng-template>

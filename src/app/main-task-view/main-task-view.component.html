@@ -1,5 +1,13 @@
-<h1 class="mainTaskViewHeading">{{project.projectName}}</h1>
-<app-add-new-task></app-add-new-task>
-<app-active-task-list [tasks] = 'activeTasks()' ></app-active-task-list>
-<button class="mainTaskViewShowCompletedBtn" (click)="toggleCompletedTasksVisible()">{{showCompletedTasksBtn}}</button>
-<app-completed-task-list [tasks] = 'completedTasks()' *ngIf="completedTasksVisible"></app-completed-task-list>
+<h1 class="mainTaskViewHeading">{{ project.projectName }}</h1>
+<app-add-new-task [currentProject]="project.projectName"></app-add-new-task>
+<app-active-task-list [tasks]="activeTasks()"></app-active-task-list>
+<button
+  class="mainTaskViewShowCompletedBtn"
+  (click)="toggleCompletedTasksVisible()"
+>
+  {{ showCompletedTasksBtn }}
+</button>
+<app-completed-task-list
+  [tasks]="completedTasks()"
+  *ngIf="completedTasksVisible"
+></app-completed-task-list>

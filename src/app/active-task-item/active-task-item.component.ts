@@ -13,6 +13,10 @@ export class ActiveTaskItemComponent implements OnInit {
   ngOnInit() {}
 
   @Input() activeTaskItem!: Task;
+  
+  editingTask: boolean = false
+
+
 
   completeTask() {
     this.taskManagementService.toggleCompleteTask(this.activeTaskItem);
