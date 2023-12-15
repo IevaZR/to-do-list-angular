@@ -18,9 +18,9 @@ export class ActiveTaskItemComponent implements OnInit {
 
 
 
-  completeTask() {
-    this.taskManagementService.toggleCompleteTask(this.activeTaskItem);
-  }
+  // completeTask() {
+  //   this.taskManagementService.toggleCompleteTask(this.activeTaskItem);
+  // }
 
   deleteTask() {
     this.taskManagementService.deleteTask(this.activeTaskItem);

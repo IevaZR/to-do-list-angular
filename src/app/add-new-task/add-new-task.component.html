@@ -1,4 +1,11 @@
 <div class="addNewTaskWrapper">
-  <input placeholder="...new task" type="text" id="new-todo-item" name="new-todo-item" [(ngModel)]="newTodoText"/>
+  <input
+    placeholder="...new task"
+    type="text"
+    id="new-todo-item"
+    name="new-todo-item"
+    [(ngModel)]="newTodoText"
+    (keyup.enter)="addNewTask($event)"
+  />
   <button type="button" (click)="addNewTask()">ADD TASK</button>
 </div>

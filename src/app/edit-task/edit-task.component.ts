@@ -17,7 +17,7 @@ export class EditTaskComponent implements OnInit {
   @Input() taskItem!:Task
   @Output() setEditingInactive = new EventEmitter<boolean>
   
-  updateTask() {
+  updateTask(event? : any) {
     this.taskManagementService.updateTask(this.taskItem);
     this.setEditingInactive.emit(false)
     console.log(this.taskItem)

@@ -1,7 +1,7 @@
 $lightFontColor: #f3eef0;
 
 ::host {
-    color: red
+  color: red;
 }
 
 h1 {
@@ -25,12 +25,12 @@ h1 {
     font-weight: 400;
     cursor: pointer;
     &:hover {
-        font-weight: 900;
+      font-weight: 900;
     }
   }
 }
 
-button {
+.addNewProjectBtn {
   background-color: transparent;
   border: none;
   font-family: "Inria Sans", sans-serif;
@@ -42,4 +42,47 @@ button {
   &:hover {
     font-weight: 900;
   }
+}
+
+.sideBarInputWrapper {
+  margin-top: 1rem;
+  display: flex;
+  background-color: #f3eef0;
+  border-radius: 10px;
+}
+
+input {
+  all: unset;
+  width: 100%;
+  height: 30px;
+  border: none;
+  padding-left: 20px;
+  color: #ec9171;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  &::placeholder {
+    color: #ec9171;
+  }
+}
+
+.saveNewProjectBtn {
+  width: 100px;
+  height: 30px;
+  background-color: #c44d75;
+  color: #f3eef0;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-wrap: nowrap;
+  &:hover {
+    background-color: #c93d6b;
+  }
+}
+
+.hidden {
+  display: none;
 }

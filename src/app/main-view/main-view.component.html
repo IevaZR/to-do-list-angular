@@ -1,5 +1,6 @@
 <app-side-bar
   [projects]="taskList"
   (showProjectEvent)="showProject($event)"
+  (addNewProjectToTaskList)="addNewProject($event)"
 ></app-side-bar>
 <app-main-task-view [project]="projectToShow"></app-main-task-view>

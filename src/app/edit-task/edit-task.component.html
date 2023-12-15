@@ -1,4 +1,4 @@
-<input type="text" [checked]="taskItem.completed" [(ngModel)]="taskItem.taskName"/>
+<input type="text" [checked]="taskItem.completed" [(ngModel)]="taskItem.taskName" (keyup.enter)="updateTask($event)"/>
 <div class="activeTaskItemButtonsWrapper">
   <button type="button" (click)="updateTask()">SAVE</button>
 </div>

@@ -16,13 +16,13 @@ export class AddNewTaskComponent implements OnInit {
 
   newTodoText: string = '';
 
-  addNewTask() {
+  addNewTask(event?: any) {
     let newTask: Task = {
       id: Math.random() * 100,
       taskName: this.newTodoText,
       completed: false,
     };
-    console.log(this.newTodoText, this.currentProject)
+    
     this.taskManagementService.addNewTask(newTask, this.currentProject);
     this.newTodoText = '';
   }

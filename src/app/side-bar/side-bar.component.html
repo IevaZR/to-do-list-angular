@@ -7,5 +7,6 @@
     <a>Gardening</a>
     <a>Shopping list</a> -->
   </div>
-  <button type="button">Add new project</button>
+  <button type="button" class="addNewProjectBtn" (click)="showInputField()">Add new project</button>
+  <div [ngClass]="addNewProjectFieldVisible ? 'sideBarInputWrapper' : 'hidden'"><input type="text" [(ngModel)]="newProjectName" (keyup.enter)="addNewProject($event)"><button class="saveNewProjectBtn" (click)="addNewProject()">ADD</button></div>
 </div>

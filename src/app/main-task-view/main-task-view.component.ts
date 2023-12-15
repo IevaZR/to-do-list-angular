@@ -29,7 +29,5 @@ export class MainTaskViewComponent implements OnInit {
     this.showCompletedTasksBtn = this.completedTasksVisible
       ? 'Hide completed tasks'
       : 'Show completed tasks';
-    console.log(this.completedTasks());
-    console.log(this.activeTasks());
   }
 }
