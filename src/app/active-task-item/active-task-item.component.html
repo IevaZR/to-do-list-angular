@@ -14,7 +14,7 @@
 <ng-template #activeTaskTemplate
   ><div
     class="activeTaskItemWrapper"
-    [ngClass]="{ importantTask: activeTaskItem.important }"
+    [class.importantTask]="activeTaskItem.important"
   >
     <input
       type="checkbox"
@@ -41,3 +41,5 @@
       </button>
     </div></div
 ></ng-template>
+
+

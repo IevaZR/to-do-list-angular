@@ -11,7 +11,8 @@ export class MainTaskViewComponent implements OnInit {
 
   ngOnInit() {}
 
-  @Input() project!: TaskList;
+  //We add {required: true} to mark that the Input is required for the component to work. By default it is set to false.
+  @Input({ required: true }) project!: TaskList;
 
   activeTasks = () => {
     return this.project.tasks.filter((item) => item.completed === false);

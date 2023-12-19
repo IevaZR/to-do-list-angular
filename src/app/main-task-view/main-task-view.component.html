@@ -11,3 +11,8 @@
   [tasks]="completedTasks()"
   *ngIf="completedTasksVisible"
 ></app-completed-task-list>
+
+<!-- In Angular 17 the new sytax for *ngIf looks like this -->
+<!-- @if (completedTasksVisible) {
+<app-completed-task-list [tasks]="completedTasks()"></app-completed-task-list>
+} -->

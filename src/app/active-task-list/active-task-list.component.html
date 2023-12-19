@@ -1,6 +1,11 @@
 <div class="activeTaskListWrapper">
   <app-active-task-item
     *ngFor="let item of tasks"
-    [activeTaskItem] = 'item'
+    [activeTaskItem]="item"
   ></app-active-task-item>
 </div>
+
+<!-- In Angular 17 the new sytax for *ngFor looks like this -->
+<!-- @for (item of tasks; track $index) {
+<app-active-task-item [activeTaskItem] = 'item'></app-active-task-item>
+} -->
