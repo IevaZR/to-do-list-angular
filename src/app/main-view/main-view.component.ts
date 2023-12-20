@@ -78,6 +78,8 @@ export class MainViewComponent implements OnInit {
     }
   }
 
+  // We inject the service that we are working with here, in the constructor. The first part is the name that we give to 
+  //it (define variable) and the second part is the type of the service. In this case this isn't a built-in service, but a custom service
   constructor(private taskManagementService: TaskManagementService) {
     // this.subscription =
     //   this.taskManagementService.toggleTaskCompleted$.subscribe(
