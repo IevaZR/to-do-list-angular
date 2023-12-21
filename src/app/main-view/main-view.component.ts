@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Task, TaskList } from './taskList';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TaskManagementService } from '../../services/TaskManagement.service';
+import { Store } from '@ngrx/store';
+import { addNewProjectAction } from '../store/tasks.actions';
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
@@ -62,54 +64,70 @@ export class MainViewComponent implements OnInit {
   //   },
   // ];
 
-  subscription: Subscription;
+  // subscription: Subscription;
 
-  taskList: TaskList[] = [
-    {
-      projectName: 'Errands',
-      tasks: [],
-    },
-  ];
+  // taskList: TaskList[] = [
+  //   {
+  //     projectName: 'Errands',
+  //     tasks: [],
+  //   },
+  // ];
 
-  getTaskList() {
-    let storedTaskList = localStorage.getItem('angular-task-list');
-    if (storedTaskList !== null) {
-      this.taskList = JSON.parse(storedTaskList);
-    }
+  taskList$!:Observable<TaskList[]>
+  taskList!:TaskList[]
+
+  constructor(private store: Store<any>) {
+    
   }
+
+  ngOnInit(): void {
+    this.taskList$ = this.store.select('tasks')
+    this.taskList$.subscribe((listOfTasks) => {
+      this.taskList = listOfTasks
+      console.log(this.taskList)
+    });
+  }
+  
+
+  // getTaskList() {
+  //   let storedTaskList = localStorage.getItem('angular-task-list');
+  //   if (storedTaskList !== null) {
+  //     this.taskList = JSON.parse(storedTaskList);
+  //   }
+  // }
 
   // We inject the service that we are working with here, in the constructor. The first part is the name that we give to 
   //it (define variable) and the second part is the type of the service. In this case this isn't a built-in service, but a custom service
-  constructor(private taskManagementService: TaskManagementService) {
-    // this.subscription =
-    //   this.taskManagementService.toggleTaskCompleted$.subscribe(
-    //     (taskItem: Task) => {
-    //       this.markTaskComplete(taskItem.id);
-    //     }
-    //   );
-    this.subscription = this.taskManagementService.taskDeleted$.subscribe(
-      (taskItem: Task) => {
-        this.deleteTask(taskItem);
-      }
-    );
-    this.subscription =
-      this.taskManagementService.taskMarkedAsImportant$.subscribe(
-        (taskItem: Task) => {
-          this.toggleImportant(taskItem);
-        }
-      );
-    this.subscription = taskManagementService.newTask$.subscribe(
-      (data: { taskItem: Task; projectName: string }) => {
-        const { taskItem, projectName } = data;
-        this.addNewTodo(taskItem, projectName);
-      }
-    );
-    // this.subscription = taskManagementService.updatedTask$.subscribe(
-    //   (taskItem: Task) => {
-    //     this.updateTask(taskItem);
-    //   }
-    // );
-  }
+  // constructor(private taskManagementService: TaskManagementService) {
+  //   // this.subscription =
+  //   //   this.taskManagementService.toggleTaskCompleted$.subscribe(
+  //   //     (taskItem: Task) => {
+  //   //       this.markTaskComplete(taskItem.id);
+  //   //     }
+  //   //   );
+  //   this.subscription = this.taskManagementService.taskDeleted$.subscribe(
+  //     (taskItem: Task) => {
+  //       this.deleteTask(taskItem);
+  //     }
+  //   );
+  //   this.subscription =
+  //     this.taskManagementService.taskMarkedAsImportant$.subscribe(
+  //       (taskItem: Task) => {
+  //         this.toggleImportant(taskItem);
+  //       }
+  //     );
+  //   this.subscription = taskManagementService.newTask$.subscribe(
+  //     (data: { taskItem: Task; projectName: string }) => {
+  //       const { taskItem, projectName } = data;
+  //       this.addNewTodo(taskItem, projectName);
+  //     }
+  //   );
+  //   // this.subscription = taskManagementService.updatedTask$.subscribe(
+  //   //   (taskItem: Task) => {
+  //   //     this.updateTask(taskItem);
+  //   //   }
+  //   // );
+  // }
 
   // markTaskComplete(taskId: number) {
   //   for (let i = 0; i < this.taskList.length; i++) {
@@ -124,49 +142,49 @@ export class MainViewComponent implements OnInit {
   //   }
   // }
 
-  deleteTask(taskItem: Task) {
-    for (let i = 0; i < this.taskList.length; i++) {
-      const project = this.taskList[i];
-      const taskIndex = project.tasks.findIndex(
-        (item) => item.id === taskItem.id
-      );
-      if (taskIndex !== -1) {
-        let foundProjectIndex = i;
-        let foundTaskIndex = taskIndex;
-        this.taskList[foundProjectIndex].tasks.splice(foundTaskIndex, 1);
-        this.saveTaskListToLocalStorage();
-      }
-    }
-  }
+  // deleteTask(taskItem: Task) {
+  //   for (let i = 0; i < this.taskList.length; i++) {
+  //     const project = this.taskList[i];
+  //     const taskIndex = project.tasks.findIndex(
+  //       (item) => item.id === taskItem.id
+  //     );
+  //     if (taskIndex !== -1) {
+  //       let foundProjectIndex = i;
+  //       let foundTaskIndex = taskIndex;
+  //       this.taskList[foundProjectIndex].tasks.splice(foundTaskIndex, 1);
+  //       this.saveTaskListToLocalStorage();
+  //     }
+  //   }
+  // }
 
-  toggleImportant(taskItem: Task) {
-    for (let i = 0; i < this.taskList.length; i++) {
-      const project = this.taskList[i];
-      const taskIndex = project.tasks.findIndex(
-        (item) => item.id === taskItem.id
-      );
-      if (taskIndex !== -1) {
-        let foundProjectIndex = i;
-        let foundTaskIndex = taskIndex;
-        this.taskList[foundProjectIndex].tasks[foundTaskIndex].important =
-          !this.taskList[foundProjectIndex].tasks[foundTaskIndex].important;
-        this.saveTaskListToLocalStorage();
-      }
-    }
-  }
+  // toggleImportant(taskItem: Task) {
+  //   for (let i = 0; i < this.taskList.length; i++) {
+  //     const project = this.taskList[i];
+  //     const taskIndex = project.tasks.findIndex(
+  //       (item) => item.id === taskItem.id
+  //     );
+  //     if (taskIndex !== -1) {
+  //       let foundProjectIndex = i;
+  //       let foundTaskIndex = taskIndex;
+  //       this.taskList[foundProjectIndex].tasks[foundTaskIndex].important =
+  //         !this.taskList[foundProjectIndex].tasks[foundTaskIndex].important;
+  //       this.saveTaskListToLocalStorage();
+  //     }
+  //   }
+  // }
 
-  addNewTodo(newTaskItem: Task, projectName: string) {
-    let projectIndex = this.taskList.findIndex(
-      (item) => item.projectName === projectName
-    );
-    let updatedProject = [...this.taskList[projectIndex].tasks, newTaskItem];
-    this.taskList[projectIndex] = {
-      projectName: projectName,
-      tasks: updatedProject,
-    };
-    this.projectToShow = this.taskList[projectIndex];
-    this.saveTaskListToLocalStorage();
-  }
+  // addNewTodo(newTaskItem: Task, projectName: string) {
+  //   let projectIndex = this.taskList.findIndex(
+  //     (item) => item.projectName === projectName
+  //   );
+  //   let updatedProject = [...this.taskList[projectIndex].tasks, newTaskItem];
+  //   this.taskList[projectIndex] = {
+  //     projectName: projectName,
+  //     tasks: updatedProject,
+  //   };
+  //   this.projectToShow = this.taskList[projectIndex];
+  //   this.saveTaskListToLocalStorage();
+  // }
 
   // updateTask(taskItem: Task) {
   //   for (let i = 0; i < this.taskList.length; i++) {
@@ -186,33 +204,33 @@ export class MainViewComponent implements OnInit {
   //   }
   // }
 
-  projectToShow: TaskList = this.taskList[0];
+  // projectToShow: TaskList = this.taskList[0];
 
-  showProject(projectName: string) {
-    let projectIndex = this.taskList.findIndex(
-      (item) => item.projectName === projectName
-    );
-    this.projectToShow = this.taskList[projectIndex];
-  }
+  // showProject(projectName: string) {
+  //   let projectIndex = this.taskList.findIndex(
+  //     (item) => item.projectName === projectName
+  //   );
+  //   this.projectToShow = this.taskList[projectIndex];
+  // }
 
-  addNewProject(projectName: string) {
-    let newProject: TaskList = {
-      projectName: projectName,
-      tasks: [],
-    };
-    this.taskList = [...this.taskList, newProject];
-    this.saveTaskListToLocalStorage();
-  }
+  // addNewProject(projectName: string) {
+  //   let newProject: TaskList = {
+  //     projectName: projectName,
+  //     tasks: [],
+  //   };
+  //   this.taskList = [...this.taskList, newProject];
+  //   this.saveTaskListToLocalStorage();
+  // }
 
-  ngOnInit() {
-    this.getTaskList();
-  }
+  // ngOnInit() {
+  //   this.getTaskList();
+  // }
 
-  saveTaskListToLocalStorage() {
-    localStorage.setItem('angular-task-list', JSON.stringify(this.taskList));
-  }
+  // saveTaskListToLocalStorage() {
+  //   localStorage.setItem('angular-task-list', JSON.stringify(this.taskList));
+  // }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 }

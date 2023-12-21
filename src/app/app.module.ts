@@ -13,6 +13,9 @@ import { CompletedTaskItemComponent } from './completed-task-item/completed-task
 import { AddNewTaskComponent } from './add-new-task/add-new-task.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { StoreModule } from '@ngrx/store';
+import { TasksReducer } from './store/tasks.reducers';
+
 
 @NgModule({
   declarations: [									
@@ -30,7 +33,8 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({tasks: TasksReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

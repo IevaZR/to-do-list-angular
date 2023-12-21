@@ -8,5 +8,10 @@
     <a>Shopping list</a> -->
   </div>
   <button type="button" class="addNewProjectBtn" (click)="showInputField()">Add new project</button>
-  <div [ngClass]="addNewProjectFieldVisible ? 'sideBarInputWrapper' : 'hidden'"><input type="text" [(ngModel)]="newProjectName" (keyup.enter)="addNewProject($event)"><button class="saveNewProjectBtn" (click)="addNewProject()">ADD</button></div>
+  
+  <!-- for use with initial setup -->
+  <!-- <div [ngClass]="addNewProjectFieldVisible ? 'sideBarInputWrapper' : 'hidden'"><input type="text" [(ngModel)]="newProjectName" (keyup.enter)="addNewProject($event)"><button class="saveNewProjectBtn" (click)="addNewProject()">ADD</button></div> -->
+  
+<!-- for use with NgRx -->
+  <div [ngClass]="addNewProjectFieldVisible ? 'sideBarInputWrapper' : 'hidden'"><input type="text" [(ngModel)]="newProjectName" ><button class="saveNewProjectBtn" (click)="addNewProject()">ADD</button></div>
 </div>
