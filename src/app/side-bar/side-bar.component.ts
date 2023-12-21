@@ -23,18 +23,11 @@ export class SideBarComponent implements OnInit {
   newProjectName: string = '';
   addNewProjectFieldVisible: boolean = false;
 
-  // @Output() addNewProjectToTaskList = new EventEmitter<string>();
-  // addNewProject(event?: any) {
-  //   if (this.newProjectName !== '') {
-  //     this.addNewProjectToTaskList.emit(this.newProjectName);
-  //   }
-  //   this.newProjectName = '';
-  //   this.addNewProjectFieldVisible = false;
-  // }
-
   addNewProject() {
-    this.store.dispatch(addNewProjectAction({projectName: this.newProjectName}))
-    console.log(this.newProjectName)
+    this.store.dispatch(
+      addNewProjectAction({ projectName: this.newProjectName })
+    );
+    this.newProjectName = ''
   }
 
   showInputField() {

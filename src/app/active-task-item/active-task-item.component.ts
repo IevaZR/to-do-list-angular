@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../main-view/taskList';
-import { TaskManagementService } from '../../services/TaskManagement.service';
+import { Store } from '@ngrx/store';
+import { deleteTaskAction, toggleTaskCompleteAction, toggleTaskImportantAction } from '../store/tasks.actions';
 
 @Component({
   selector: 'app-active-task-item',
@@ -8,25 +9,23 @@ import { TaskManagementService } from '../../services/TaskManagement.service';
   styleUrls: ['./active-task-item.component.scss'],
 })
 export class ActiveTaskItemComponent implements OnInit {
-  constructor(private taskManagementService: TaskManagementService) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {}
 
   @Input() activeTaskItem!: Task;
-  
-  editingTask: boolean = false
 
+  editingTask: boolean = false;
 
-
-  // completeTask() {
-  //   this.taskManagementService.toggleCompleteTask(this.activeTaskItem);
-  // }
+  completeTask() {
+    this.store.dispatch(toggleTaskCompleteAction({task: this.activeTaskItem}))
+  }
 
   deleteTask() {
-    this.taskManagementService.deleteTask(this.activeTaskItem);
+    this.store.dispatch(deleteTaskAction({ task: this.activeTaskItem }));
   }
 
   markAsImportant() {
-    this.taskManagementService.toggleMarkedAsImportant(this.activeTaskItem)
+    this.store.dispatch(toggleTaskImportantAction({task: this.activeTaskItem}))
   }
 }

@@ -14,5 +14,4 @@ export class ActiveTaskListComponent implements OnInit {
   ngOnInit() {
   }
 
-  // project1 = this.tasks[0]
 }

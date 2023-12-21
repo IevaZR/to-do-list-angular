@@ -19,7 +19,7 @@
     <input
       type="checkbox"
       [checked]="activeTaskItem.completed"
-      [(ngModel)]="activeTaskItem.completed"
+      (click)="completeTask()"
     />
     <p>{{ activeTaskItem.taskName }}</p>
     <div class="activeTaskItemButtonsWrapper">

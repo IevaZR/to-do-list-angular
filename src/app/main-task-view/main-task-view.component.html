@@ -1,4 +1,7 @@
-<h1 class="mainTaskViewHeading">{{ project.projectName }}</h1>
+<!-- Angular 17 syntax for if statement -->
+
+@if (project !== undefined) {
+  <h1 class="mainTaskViewHeading">{{ project.projectName }}</h1>
 <app-add-new-task [currentProject]="project.projectName"></app-add-new-task>
 <app-active-task-list [tasks]="activeTasks()"></app-active-task-list>
 <button
@@ -11,6 +14,10 @@
   [tasks]="completedTasks()"
   *ngIf="completedTasksVisible"
 ></app-completed-task-list>
+} @else {
+  <h1>Loading</h1>
+}
+
 
 <!-- In Angular 17 the new sytax for *ngIf looks like this -->
 <!-- @if (completedTasksVisible) {

@@ -15,17 +15,17 @@ export const addNewTaskAction = createAction(
 );
 export const deleteTaskAction = createAction(
   '[Task] Delete Task',
-  props<{ projectName: string; task: Task }>()
+  props<{ task: Task }>()
 );
 export const toggleTaskCompleteAction = createAction(
   '[Task] Toggle Task Complete',
-  props<{ projectName: string; task: Task }>()
+  props<{ task: Task }>()
 );
 export const toggleTaskImportantAction = createAction(
   '[Task] Toggle Task Important',
-  props<{ projectName: string; task: Task }>()
+  props<{ task: Task }>()
 );
 export const editTaskAction = createAction(
   '[Task] Edit Task',
-  props<{ projectName: string; task: Task }>()
+  props<{ task: Task; newTaskName: string }>()
 );

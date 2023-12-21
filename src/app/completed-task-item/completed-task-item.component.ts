@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../main-view/taskList';
-import { TaskManagementService } from '../../services/TaskManagement.service';
+import { Store } from '@ngrx/store';
+import { deleteTaskAction, toggleTaskCompleteAction } from '../store/tasks.actions';
+
 
 @Component({
   selector: 'app-completed-task-item',
@@ -8,20 +10,17 @@ import { TaskManagementService } from '../../services/TaskManagement.service';
   styleUrls: ['./completed-task-item.component.scss'],
 })
 export class CompletedTaskItemComponent implements OnInit {
-  constructor(private taskManagementService: TaskManagementService
-  ) {}
+  constructor(private store: Store<any>) {}
 
-  ngOnInit() {
-    console.log(this.task)
-  }
+  ngOnInit() {}
 
   @Input() task!: Task;
 
   completeTask() {
-    this.taskManagementService.toggleCompleteTask(this.task);
+    this.store.dispatch(toggleTaskCompleteAction({task: this.task}))
   }
 
   deleteTaskItem() {
-    this.taskManagementService.deleteTask(this.task);
+    this.store.dispatch(deleteTaskAction({task: this.task}))
   }
 }

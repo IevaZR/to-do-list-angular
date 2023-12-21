@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task, TaskList } from './taskList';
 import { Observable, Subscription } from 'rxjs';
-import { TaskManagementService } from '../../services/TaskManagement.service';
 import { Store } from '@ngrx/store';
 import { addNewProjectAction } from '../store/tasks.actions';
 @Component({
@@ -73,164 +72,24 @@ export class MainViewComponent implements OnInit {
   //   },
   // ];
 
-  taskList$!:Observable<TaskList[]>
-  taskList!:TaskList[]
+  taskList$!: Observable<TaskList[]>;
+  taskList: TaskList[] = [];
+  projectToShow!: TaskList;
 
-  constructor(private store: Store<any>) {
-    
-  }
+  constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.taskList$ = this.store.select('tasks')
+    this.taskList$ = this.store.select('tasks');
     this.taskList$.subscribe((listOfTasks) => {
-      this.taskList = listOfTasks
-      console.log(this.taskList)
+      this.taskList = listOfTasks;
+      this.projectToShow = this.taskList[0];
     });
   }
-  
 
-  // getTaskList() {
-  //   let storedTaskList = localStorage.getItem('angular-task-list');
-  //   if (storedTaskList !== null) {
-  //     this.taskList = JSON.parse(storedTaskList);
-  //   }
-  // }
-
-  // We inject the service that we are working with here, in the constructor. The first part is the name that we give to 
-  //it (define variable) and the second part is the type of the service. In this case this isn't a built-in service, but a custom service
-  // constructor(private taskManagementService: TaskManagementService) {
-  //   // this.subscription =
-  //   //   this.taskManagementService.toggleTaskCompleted$.subscribe(
-  //   //     (taskItem: Task) => {
-  //   //       this.markTaskComplete(taskItem.id);
-  //   //     }
-  //   //   );
-  //   this.subscription = this.taskManagementService.taskDeleted$.subscribe(
-  //     (taskItem: Task) => {
-  //       this.deleteTask(taskItem);
-  //     }
-  //   );
-  //   this.subscription =
-  //     this.taskManagementService.taskMarkedAsImportant$.subscribe(
-  //       (taskItem: Task) => {
-  //         this.toggleImportant(taskItem);
-  //       }
-  //     );
-  //   this.subscription = taskManagementService.newTask$.subscribe(
-  //     (data: { taskItem: Task; projectName: string }) => {
-  //       const { taskItem, projectName } = data;
-  //       this.addNewTodo(taskItem, projectName);
-  //     }
-  //   );
-  //   // this.subscription = taskManagementService.updatedTask$.subscribe(
-  //   //   (taskItem: Task) => {
-  //   //     this.updateTask(taskItem);
-  //   //   }
-  //   // );
-  // }
-
-  // markTaskComplete(taskId: number) {
-  //   for (let i = 0; i < this.taskList.length; i++) {
-  //     const project = this.taskList[i];
-  //     const taskIndex = project.tasks.findIndex((item) => item.id === taskId);
-  //     if (taskIndex !== -1) {
-  //       let foundProjectIndex = i;
-  //       let foundTaskIndex = taskIndex;
-  //       this.taskList[foundProjectIndex].tasks[foundTaskIndex].completed =
-  //         !this.taskList[foundProjectIndex].tasks[foundTaskIndex].completed;
-  //     }
-  //   }
-  // }
-
-  // deleteTask(taskItem: Task) {
-  //   for (let i = 0; i < this.taskList.length; i++) {
-  //     const project = this.taskList[i];
-  //     const taskIndex = project.tasks.findIndex(
-  //       (item) => item.id === taskItem.id
-  //     );
-  //     if (taskIndex !== -1) {
-  //       let foundProjectIndex = i;
-  //       let foundTaskIndex = taskIndex;
-  //       this.taskList[foundProjectIndex].tasks.splice(foundTaskIndex, 1);
-  //       this.saveTaskListToLocalStorage();
-  //     }
-  //   }
-  // }
-
-  // toggleImportant(taskItem: Task) {
-  //   for (let i = 0; i < this.taskList.length; i++) {
-  //     const project = this.taskList[i];
-  //     const taskIndex = project.tasks.findIndex(
-  //       (item) => item.id === taskItem.id
-  //     );
-  //     if (taskIndex !== -1) {
-  //       let foundProjectIndex = i;
-  //       let foundTaskIndex = taskIndex;
-  //       this.taskList[foundProjectIndex].tasks[foundTaskIndex].important =
-  //         !this.taskList[foundProjectIndex].tasks[foundTaskIndex].important;
-  //       this.saveTaskListToLocalStorage();
-  //     }
-  //   }
-  // }
-
-  // addNewTodo(newTaskItem: Task, projectName: string) {
-  //   let projectIndex = this.taskList.findIndex(
-  //     (item) => item.projectName === projectName
-  //   );
-  //   let updatedProject = [...this.taskList[projectIndex].tasks, newTaskItem];
-  //   this.taskList[projectIndex] = {
-  //     projectName: projectName,
-  //     tasks: updatedProject,
-  //   };
-  //   this.projectToShow = this.taskList[projectIndex];
-  //   this.saveTaskListToLocalStorage();
-  // }
-
-  // updateTask(taskItem: Task) {
-  //   for (let i = 0; i < this.taskList.length; i++) {
-  //     const project = this.taskList[i];
-  //     const taskIndex = project.tasks.findIndex(
-  //       (item) => item.id === taskItem.id
-  //     );
-  //     if (taskIndex !== -1) {
-  //       let foundProjectIndex = i;
-  //       let foundTaskIndex = taskIndex;
-  //       console.log(this.taskList)
-  //       let updatedTaskList = [...this.taskList];
-  //       updatedTaskList[foundProjectIndex].tasks[foundTaskIndex] = taskItem;
-  //       this.taskList = updatedTaskList;
-  //       console.log(this.taskList)
-  //     }
-  //   }
-  // }
-
-  // projectToShow: TaskList = this.taskList[0];
-
-  // showProject(projectName: string) {
-  //   let projectIndex = this.taskList.findIndex(
-  //     (item) => item.projectName === projectName
-  //   );
-  //   this.projectToShow = this.taskList[projectIndex];
-  // }
-
-  // addNewProject(projectName: string) {
-  //   let newProject: TaskList = {
-  //     projectName: projectName,
-  //     tasks: [],
-  //   };
-  //   this.taskList = [...this.taskList, newProject];
-  //   this.saveTaskListToLocalStorage();
-  // }
-
-  // ngOnInit() {
-  //   this.getTaskList();
-  // }
-
-  // saveTaskListToLocalStorage() {
-  //   localStorage.setItem('angular-task-list', JSON.stringify(this.taskList));
-  // }
-
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
+  showProject(projectName: string) {
+    let projectIndex = this.taskList.findIndex(
+      (item) => item.projectName === projectName
+    );
+    this.projectToShow = this.taskList[projectIndex];
+  }
 }

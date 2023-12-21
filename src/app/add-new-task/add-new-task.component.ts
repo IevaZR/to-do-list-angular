@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../main-view/taskList';
-import { TaskManagementService } from '../../services/TaskManagement.service';
+import { Store } from '@ngrx/store';
+import { addNewTaskAction } from '../store/tasks.actions';
 
 @Component({
   selector: 'app-add-new-task',
@@ -8,7 +9,7 @@ import { TaskManagementService } from '../../services/TaskManagement.service';
   styleUrls: ['./add-new-task.component.scss'],
 })
 export class AddNewTaskComponent implements OnInit {
-  constructor(private taskManagementService: TaskManagementService) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {}
 
@@ -22,8 +23,10 @@ export class AddNewTaskComponent implements OnInit {
       taskName: this.newTodoText,
       completed: false,
     };
-    
-    this.taskManagementService.addNewTask(newTask, this.currentProject);
+
+    this.store.dispatch(
+      addNewTaskAction({ projectName: this.currentProject, task: newTask })
+    );
     this.newTodoText = '';
   }
 }
