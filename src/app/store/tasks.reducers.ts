@@ -52,39 +52,49 @@ export const TasksReducer = createReducer(
     return updatedState;
   }),
   on(toggleTaskImportantAction, (state, { task }) => {
-    const updatedState = state.map((project) => {
-      const updatedTasks = project.tasks.map((item) => {
+    const updatedState = [...state];
+    for (let i = 0; i < updatedState.length; i++) {
+      const project = updatedState[i];
+      const updatedTasks = [...project.tasks];
+      for (let j = 0; j < updatedTasks.length; j++) {
+        const item = updatedTasks[j];
         if (item.id === task.id) {
-          return { ...item, important: !task.important };
+          updatedTasks[j] = { ...item, important: !item.important };
         }
-        return item;
-      });
-      return { ...project, tasks: updatedTasks };
-    });
+      }
+      updatedState[i] = { ...project, tasks: updatedTasks };
+    }
     return updatedState;
   }),
   on(toggleTaskCompleteAction, (state, { task }) => {
-    const updatedState = state.map((project) => {
-      const updatedTasks = project.tasks.map((item) => {
+    const updatedState = [...state];
+    for (let i = 0; i < updatedState.length; i++) {
+      const project = updatedState[i];
+      const updatedTasks = [...project.tasks];
+      for (let j = 0; j < updatedTasks.length; j++) {
+        const item = updatedTasks[j];
         if (item.id === task.id) {
-          return { ...item, completed: !item.completed };
+          updatedTasks[j] = { ...item, completed: !item.completed };
         }
-        return item;
-      });
-      return { ...project, tasks: updatedTasks };
-    });
+      }
+      updatedState[i] = { ...project, tasks: updatedTasks };
+    }
     return updatedState;
   }),
   on(editTaskAction, (state, { task, newTaskName }) => {
-    const updatedState = state.map((project) => {
-      const updatedTasks = project.tasks.map((item) => {
+    const updatedState = [...state];
+    for (let i = 0; i < updatedState.length; i++) {
+      const project = updatedState[i];
+      const updatedTasks = [...project.tasks];
+      for (let j = 0; j < updatedTasks.length; j++) {
+        const item = updatedTasks[j];
         if (item.id === task.id) {
-          return { ...item, taskName: newTaskName };
+          updatedTasks[j] = { ...item, taskName: newTaskName };
         }
-        return item;
-      });
-      return { ...project, tasks: updatedTasks };
-    });
+      }
+      updatedState[i] = { ...project, tasks: updatedTasks };
+    }
+    console.log(updatedState)
     return updatedState;
   })
 );
